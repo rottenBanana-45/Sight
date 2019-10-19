@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "887369186861",
+    "firebase_url": "https://sight-f2063.firebaseio.com",
+    "project_id": "sight-f2063",
+    "storage_bucket": "sight-f2063.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:887369186861:android:f2e6905e8b13179d2642a4",
+        "android_client_info": {
+          "package_name": "com.example.sight"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "887369186861-ue5q02cmlghe59l41gugddhs85b1jfi7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sight",
+            "certificate_hash": "568bdb94c287a10018722c0a48f43d5e8458894c"
+          }
+        },
+        {
+          "client_id": "887369186861-nefgfokol0o7sm55v0slobt015jldvvq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3_XLb__t9TELO_9DJyNlzGXrGlY-bywE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "887369186861-nefgfokol0o7sm55v0slobt015jldvvq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

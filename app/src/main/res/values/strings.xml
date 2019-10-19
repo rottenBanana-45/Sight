@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Sight</string>
+    <string name="email">Email</string>
+    <string name="password"> Password </string>
+    <string name="login">LOGIN</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="sign_up_as">Sign up as:</string>
+    <string name="student_id">Student ID</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="log_in">Log In</string>
+    <string name="register">Register</string>
+    
+    <array name="type">
+        <item> Student </item>
+        <item> Admin </item>
+    </array>
+</resources>
