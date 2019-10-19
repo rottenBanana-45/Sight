@@ -26,7 +26,7 @@ public class SignupActivity extends AppCompatActivity {
 
     private ImageView logo;
 
-    private TextInputLayout nameField, emailField, passField, confirmPassField;
+    private TextInputLayout nameField, emailField, passField, confirmPassField, studentIDField;
     private ProgressDialog progressDialog;
     private Spinner spinner;
 
@@ -45,6 +45,7 @@ public class SignupActivity extends AppCompatActivity {
         emailField = findViewById(R.id.fieldEmail);
         passField = findViewById(R.id.fieldPass);
         confirmPassField = findViewById(R.id.confirmPass);
+        studentIDField = findViewById(R.id.studentId);
 
         spinner = findViewById(R.id.signupSpinner);
 
@@ -57,6 +58,7 @@ public class SignupActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final String name = nameField.getEditText().getText().toString().trim();
                 final String email = emailField.getEditText().getText().toString().trim();
+                final String sID = studentIDField.getEditText().getText().toString().trim();
                 String pass = passField.getEditText().getText().toString();
                 String confirmPass = confirmPassField.getEditText().getText().toString();
                 final String type = spinner.getSelectedItem().toString();
@@ -82,6 +84,7 @@ public class SignupActivity extends AppCompatActivity {
                                 data.setEmail(email);
                                 data.setType(type);
                                 data.setUid(uid);
+                                data.setStudentID(""+sID);
 
                                 rootReference.child("users").child(type).child(uid).setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override

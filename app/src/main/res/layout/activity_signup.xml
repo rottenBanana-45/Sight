@@ -157,7 +157,9 @@
                 android:id="@+id/signupSpinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:entries="@array/type">
+                android:entries="@array/type"
+                android:layout_marginStart="60dp"
+                android:layout_marginLeft="30dp">
 
 
             </Spinner>
@@ -188,12 +190,15 @@
 
         <Button
             android:id="@+id/signupbtn"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/studentId"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
-            android:text="@string/sign_up"/>
+            android:layout_marginBottom="40dp"
+            android:text="@string/sign_up"
+            android:background="#1152D3"
+            android:textColor="#FFFFFF"/>
 
     </RelativeLayout>
 
