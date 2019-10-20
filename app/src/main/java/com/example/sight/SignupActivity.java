@@ -74,27 +74,28 @@ public class SignupActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
-                                final String uid = mAuth.getCurrentUser().getUid();
+                                final String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
                                 rootReference = FirebaseDatabase.getInstance().getReference();
 
                                 User data = new User();
-                                data.setAdmin(false);
+                                data.setAdmin("false");
                                 data.setName(name);
                                 data.setEmail(email);
-                                data.setType(type);
+                                if(type.equals("Student")) data.setType("student");
                                 data.setUid(uid);
                                 data.setStudentID(""+sID);
 
-                                rootReference.child("users").child(type).child(uid).setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                rootReference.child("users").child("student").child(uid).setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if(task.isSuccessful()){
                                             progressDialog.dismiss();
+                                            FirebaseAuth.getInstance().signOut();
 
                                             Intent i = new Intent(SignupActivity.this, LoginActivity.class);
                                             Toast.makeText(SignupActivity.this,
-                                                    "Registration completed. Please verify your email.",
+                                                    "Registration completed. Please log in.",
                                                     Toast.LENGTH_LONG).show();
 
                                             startActivity(i);

@@ -1,8 +1,7 @@
 package com.example.sight.JavaClasses;
 
 public class User {
-    public String name, email, studentID, type, uid;
-    public boolean isAdmin;
+    public String name, email, studentID, type, uid, isAdmin;
 
     public String getType() {
         return type;
@@ -16,7 +15,7 @@ public class User {
         this.uid = uid;
     }
 
-    public boolean isAdmin() {
+    public String isAdmin() {
         return isAdmin;
     }
 
@@ -44,7 +43,7 @@ public class User {
         this.studentID = studentID;
     }
 
-    public void setAdmin(boolean admin) {
+    public void setAdmin(String admin) {
         isAdmin = admin;
     }
 
@@ -52,7 +51,4 @@ public class User {
         return studentID;
     }
 
-    public boolean isIsAdmin() {
-        return isAdmin;
-    }
 }

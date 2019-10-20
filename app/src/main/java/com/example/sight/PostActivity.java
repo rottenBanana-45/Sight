@@ -52,15 +52,14 @@ public class PostActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String post = editPost.getText().toString();
-                String title = editTitle.getText().toString();
+
 
                 String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("users")
-                        .child("Students")
+                        .child("student")
                         .child(uid);
-                Post data = new Post();
+
 
                 //Toast.makeText(PostActivity.this, uid, Toast.LENGTH_LONG).show();
 
@@ -68,11 +67,50 @@ public class PostActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+                        for (DataSnapshot ds: dataSnapshot.getChildren()){
+                            if(ds.getKey().equals("name")){
+                                name = ds.getValue().toString();
+                                flag = false;
+                            }
+
+                            if(!flag){
+                                flag = true;
+                                String post = editPost.getText().toString();
+                                String title = editTitle.getText().toString();
+                                Post data = new Post();
+
+                                data.setName(name);
 
 
+                                Calendar calendar  = Calendar.getInstance();
+                                SimpleDateFormat format = new SimpleDateFormat("hh:mm a, dd MMMM yyyy");
+                                String time = format.format(calendar.getTime());
+                                //Toast.makeText(PostActivity.this, name, 3000).show();
+
+                                data.setTime(time);
+                                data.setPost(post);
+                                data.setTitle(title);
 
 
-                        Toast.makeText(PostActivity.this, dataSnapshot.child("email").getValue().toString(), Toast.LENGTH_LONG).show();
+                                DatabaseReference newref =  FirebaseDatabase.getInstance().getReference().child("posts").push();
+                                String pid = newref.getKey();
+
+                                data.setPid(pid);
+                                data.setStatus("New");
+
+                                FirebaseDatabase.getInstance().getReference().child("posts").child("all").child(pid)
+                                        .setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if(task.isSuccessful()){
+                                            Toast.makeText(PostActivity.this, "Posted successfully", Toast.LENGTH_LONG).show();
+                                        }
+                                    }
+                                });
+                                startActivity(new Intent(PostActivity.this, HomeActivity.class));
+                                finish();
+                            }
+                        }
 
                     }
 
@@ -82,34 +120,7 @@ public class PostActivity extends AppCompatActivity {
                     }
                 });
 
-                data.setName(name);
 
-
-                Calendar calendar  = Calendar.getInstance();
-                SimpleDateFormat format = new SimpleDateFormat("hh:mm a, dd MMMM yyyy");
-                String time = format.format(calendar.getTime());
-                //Toast.makeText(PostActivity.this, name, 3000).show();
-
-                data.setTime(time);
-                data.setPost(post);
-                data.setTitle(title);
-
-
-                DatabaseReference newref =  FirebaseDatabase.getInstance().getReference().child("posts").push();
-                String pid = newref.getKey();
-
-                data.setPid(pid);
-                data.setStatus("New");
-
-                FirebaseDatabase.getInstance().getReference().child("posts").child("all").child(pid)
-                        .setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()){
-                            //Toast.makeText(PostActivity.this, "Posted successfully", Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
             }
         });
     }
